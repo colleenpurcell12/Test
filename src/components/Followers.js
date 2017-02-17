@@ -9,7 +9,10 @@ class Followers extends React.Component {
 
     componentDidMount() {
         console.log("this.props.params",this.props.params)
-
+        this.setState({
+            usernameOne: this.props.params.usernameOne,
+            usernameTwo: this.props.params.usernameTwo 
+        });
         fetch(`https://api.github.com/users/${this.props.params.usernameOne}/followers`)
         .then(response => response.json())
         .then( followersOne => {
@@ -18,7 +21,6 @@ class Followers extends React.Component {
             });
         });
 
-
         fetch(`https://api.github.com/users/${this.props.params.usernameTwo}/followers`)
         .then(response => response.json())
         .then( followersTwo => {
@@ -26,31 +28,25 @@ class Followers extends React.Component {
                 followersTwo: followersTwo
             });
         });
-
     }
 
     render() {
-        //console.log({this.props})
-
         if (!this.state.followersOne || !this.state.followersTwo) {
             return ( <div className="user-page">LOADING...</div> );
         }
-        const followersOne = this.state.followersOne;
-        const followersTwo = this.state.followersTwo;
 
-        // Meixmc/bart-jansen YES bart-jansen and Meixmc both follow trusktr
+        const { followersOne, followersTwo, usernameOne, usernameTwo } = this.state
+
+        // bart-jansen and Meixmc both follow trusktr, Basarqari, and etangreal
 
         const followersOneList =[]
         if(followersOne){
             followersOne.forEach(follower => followersOneList.push(follower.login))
         }
-        console.log("Length of followersOneList",followersOneList.length)
-
         const followersTwoList =[]
         if(followersTwo){
             followersTwo.forEach(follower => followersTwoList.push(follower.login))
         }
-        console.log("Length of followersTwoList",followersTwoList.length)
 
         const commonFollowers = []
         if(followersOneList && followersTwoList){
@@ -60,17 +56,16 @@ class Followers extends React.Component {
               }
             })
         }
-        console.log("commonFollowers",commonFollowers)
 
         return (
 
-            <div className="user-page">
+            <div className="followers-page">
                 
-                <div className="user-repos">
-                    <h3 className="user-repos__title">Common Followers</h3>
+                <div className="followers-usernames">
+                    <h3 className="followers-title">Common Followers of {usernameOne} and {usernameTwo}</h3>
                     <ul>
                         { commonFollowers.map( (follower, idx)=>
-                        <li key={idx} className="user-repos__list" >{follower}</li>
+                        <li key={idx} className="followers-list" >{follower}</li>
                         )}
                     </ul>
                 </div>

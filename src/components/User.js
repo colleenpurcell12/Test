@@ -28,17 +28,12 @@ class User extends React.Component {
     }
 
     render() {
-        //console.log({this.props})
 
         if (!this.state.user) {
             return ( <div className="user-page">LOADING...</div> );
         }
         const user = this.state.user;
         const repos = this.state.repos;
-
-        //console.log("user",user)//[0].value)
-        //console.log("repos",repos)
-
 
         const repoList =[]
         if(repos){
@@ -59,10 +54,10 @@ class User extends React.Component {
                     </div>
                 </div>
                 <div className="user-repos">
-                    <h3 className="user-repos__title">Public Repositories<span>({stat.value})</span></h3>
+                    <h3 className="user-repos__title">Public Repositories (<span>{stat.value})</span></h3>
                     <ul>
                         { repoList.map( (repo, idx)=>
-                        <li key={idx} className="user-repos__list" >{repo[0]}<span className="star glyphicon glyphicon-star">✮ </span>{repo[1]}</li>
+                        <li key={idx} className="user-repos__list" >{repo[0]}<span className="user-repos__star">✮ </span>{repo[1]}</li>
                            )}
                     </ul>
                 </div>
