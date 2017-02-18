@@ -19,7 +19,7 @@ input{
     background-color: #f2f4f9;
     margin-bottom: 5px ;
 }
-input:focus{
+input:focus, button:focus{
     outline: none;
 }
 

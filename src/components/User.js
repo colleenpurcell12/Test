@@ -8,15 +8,18 @@ class User extends React.Component {
     }
 
     componentDidMount() {
+        // API query for user object
         fetch(`https://api.github.com/users/${this.props.params.username}`)
         .then(response => response.json())
         .then( user =>  { this.setState({ user }); });
 
+        // API query for repo objects array of the searched github user
         fetch(`https://api.github.com/users/${this.props.params.username}/repos`)
         .then(response => response.json())
         .then( repos => { this.setState({ repos }); });
     }
 
+    // Filter by repo name as you type
     handleChange (e) {
         const filter = e.target.value.toLowerCase();
         this.setState({ filter });
@@ -30,6 +33,7 @@ class User extends React.Component {
         }
 
         let repoList =[]
+        // the displayed repo list will only include the names that contain the filter string
         if(repos){
             repoList= repos
             .filter (repo => repo.name.toLowerCase().includes(filter))

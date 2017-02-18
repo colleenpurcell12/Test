@@ -7,6 +7,10 @@ class Search extends React.Component {
         this.handleSubmitUser       =   this.handleSubmitUser.bind(this);
         this.handleSubmitFollowers  =   this.handleSubmitFollowers.bind(this);
     }
+
+    // event handlers for submitting either one or two user names, 
+    // and hitting subsequent Routes
+
     handleSubmitUser(e) {
         e.preventDefault();
         history.push(`/user/${this.refs.userInput.value}`)
