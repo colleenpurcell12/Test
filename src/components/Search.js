@@ -20,7 +20,7 @@ class Search extends React.Component {
         return (
             <div className="search-page">
                 <h2>Find Repos by Github UserName</h2>
-                <form className="search-form" 
+                <form className="search-form" id="firstSearchForm"
                     onSubmit={this.handleSubmitUser}>
 
                     <input ref="userInput" className="search-page__input" type="text" placeholder="GitHub Username"/>
