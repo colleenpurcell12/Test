@@ -26,7 +26,7 @@ class Search extends React.Component {
 
                     <input ref="userInput" className="search-page__input" type="text" placeholder="GitHub Username"/>
 
-                    <button className="search-page__button">Search</button>
+                    <button className="search-page__button" id="first-button">Search</button>
                 </form>
 
                 <h2>Find The Common Followers Between Users</h2>

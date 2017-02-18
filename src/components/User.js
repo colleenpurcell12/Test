@@ -25,8 +25,6 @@ class User extends React.Component {
     render() {
         const { user, repos, filter } = this.state;
 
-        console.log("****USER:",user,"***repo",repos)
-
         if (!this.state.user) {
             return ( <div className="user-page">LOADING...</div> );
         }

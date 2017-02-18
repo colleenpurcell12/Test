@@ -4,7 +4,6 @@ import expect from 'expect';
 import { shallow } from 'enzyme';
 import Search from './Search';
 
-
 describe('Component: Search', () => {
   let wrapper = shallow(<Search />);
 
