@@ -1,32 +1,24 @@
 import React from 'react';
-//import { Link } from 'react-router';
 
 class Followers extends React.Component {
+    
     constructor() {
         super();
         this.state = {};
     }
 
     componentDidMount() {
-        console.log("this.props.params",this.props.params)
-        this.setState({
-            usernameOne: this.props.params.usernameOne,
-            usernameTwo: this.props.params.usernameTwo 
-        });
+        const { usernameOne, usernameTwo } = this.props.params
+        this.setState({ usernameOne, usernameTwo });
+
         fetch(`https://api.github.com/users/${this.props.params.usernameOne}/followers`)
         .then(response => response.json())
-        .then( followersOne => {
-            this.setState({
-                followersOne: followersOne
-            });
+        .then( followersOne => { this.setState({ followersOne });
         });
 
         fetch(`https://api.github.com/users/${this.props.params.usernameTwo}/followers`)
         .then(response => response.json())
-        .then( followersTwo => {
-            this.setState({
-                followersTwo: followersTwo
-            });
+        .then( followersTwo => { this.setState({ followersTwo });
         });
     }
 
@@ -39,16 +31,18 @@ class Followers extends React.Component {
 
         // bart-jansen and Meixmc both follow trusktr, Basarqari, and etangreal
 
-        const followersOneList =[]
+        let followersOneList =[],
+            followersTwoList =[],
+            commonFollowers = []
+
         if(followersOne){
             followersOne.forEach(follower => followersOneList.push(follower.login))
         }
-        const followersTwoList =[]
+         
         if(followersTwo){
             followersTwo.forEach(follower => followersTwoList.push(follower.login))
         }
 
-        const commonFollowers = []
         if(followersOneList && followersTwoList){
             followersOneList.forEach(function(follower){ 
                 if(followersTwoList.includes(follower)){
@@ -60,7 +54,6 @@ class Followers extends React.Component {
         return (
 
             <div className="followers-page">
-                
                 <div className="followers-usernames">
                     <h3 className="followers-title">Common Followers of {usernameOne} and {usernameTwo}</h3>
                     <ul>

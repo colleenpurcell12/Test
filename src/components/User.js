@@ -1,45 +1,31 @@
 import React from 'react';
-//import { Link } from 'react-router';
 
 class User extends React.Component {
     constructor() {
         super();
-        //this.state = {};
         this.state = { filter: '' };
         this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount() {
-
         fetch(`https://api.github.com/users/${this.props.params.username}`)
         .then(response => response.json())
-        .then( user => {
-            this.setState({
-                user: user
-            });
-        });
-
+        .then( user =>  { this.setState({ user }); });
 
         fetch(`https://api.github.com/users/${this.props.params.username}/repos`)
         .then(response => response.json())
-        .then( repos => {
-            this.setState({
-                repos: repos
-            });
-        });
+        .then( repos => { this.setState({ repos }); });
     }
 
-    handleChange (evt) {
-      const filter = evt.target.value.toLowerCase();
-      this.setState({ filter });
+    handleChange (e) {
+        const filter = e.target.value.toLowerCase();
+        this.setState({ filter });
     }
 
     render() {
         const { user, repos, filter } = this.state;
 
-        //const { filter } = this.state;
-        //console.log("this.props",this.props)
-        // let { products } = this.props;
+        console.log("****USER:",user,"***repo",repos)
 
         if (!this.state.user) {
             return ( <div className="user-page">LOADING...</div> );
@@ -49,16 +35,12 @@ class User extends React.Component {
         if(repos){
             repoList= repos
             .filter (repo => repo.name.toLowerCase().includes(filter))
-            .map(repo => [repo.name, repo.stargazers_count])
+            .map(repo => [{name: repo.name, stargazers: repo.stargazers_count}])
         }
 
-        // if(filter) repos = repoList.filter (repo => repos[0]toLowerCase().match(filter))
-
-
-        const stat = {   
-                name: 'Public Repos',
-                value: user.public_repos            }
-
+        const stat = { name: 'Public Repos',
+                       value: user.public_repos  
+                     }
         return (
 
             <div className="user-page">
@@ -82,7 +64,11 @@ class User extends React.Component {
                     />
                     <ul>
                         { repoList.map( (repo, idx)=>
-                        <li key={idx} className="user-repos__list" >{repo[0]}<span className="user-repos__star">✮ </span>{repo[1]}</li>
+                        <li key={idx} className="user-repos__list" >
+                            {repo[0].name}
+                            <span className="user-repos__star">✮ </span>
+                            {repo[0].stargazers}
+                        </li>
                            )}
                     </ul>
                 </div>

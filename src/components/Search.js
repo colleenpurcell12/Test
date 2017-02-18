@@ -4,8 +4,8 @@ import { browserHistory as history } from 'react-router';
 class Search extends React.Component {
     constructor(props) {
         super(props);
-        this.handleSubmitUser = this.handleSubmitUser.bind(this);
-        this.handleSubmitFollowers = this.handleSubmitFollowers.bind(this);
+        this.handleSubmitUser       =   this.handleSubmitUser.bind(this);
+        this.handleSubmitFollowers  =   this.handleSubmitFollowers.bind(this);
     }
     handleSubmitUser(e) {
         e.preventDefault();
@@ -15,11 +15,12 @@ class Search extends React.Component {
         e.preventDefault();
         history.push(`/followers/${this.refs.accountOne.value}/${this.refs.accountTwo.value}`)
     }
-//Search For Common Followers
+
     render() {
         return (
             <div className="search-page">
-                <h2>Find Repos by Github UserName</h2>
+                <h2 className="search-form-title">Find Repos by Github UserName</h2>
+
                 <form className="search-form" id="firstSearchForm"
                     onSubmit={this.handleSubmitUser}>
 
@@ -29,7 +30,8 @@ class Search extends React.Component {
                 </form>
 
                 <h2>Find The Common Followers Between Users</h2>
-                <form className="search-form" 
+
+                <form className="search-form" id="secondSearchForm"
                     onSubmit={this.handleSubmitFollowers}>
 
                     <input ref="accountOne" className="search-page__input" type="text" placeholder="1st Username"/>
@@ -37,6 +39,7 @@ class Search extends React.Component {
 
                     <button className="search-page__button">Search</button>
                 </form>
+                <p>*Try usernames bart-jansen & Meixmc</p>
             </div>
         );
     }

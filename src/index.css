@@ -23,6 +23,9 @@ input:focus{
     outline: none;
 }
 
+/* Main App Style
+================================ */
+
 .main-header {
     background-color: #034f84;
     color: #bdcae3;
@@ -42,6 +45,9 @@ input:focus{
 .main-content {
     padding: 0.5rem;
 }
+
+/* Search Form Component Style
+================================ */
 
 .search-form{
     margin-bottom: 20px;
@@ -74,6 +80,8 @@ input:focus{
     background-color: #777099 ; 
 }
 
+/* User Page Style
+================================ */
 
 .user-page{
     color: #564D80;
@@ -106,6 +114,8 @@ input:focus{
     font-size: 16px;
 }
 
+/* === User's Repo List Results Style === */
+
 .user-repos, .followers-usernames {
     margin-left: 25%;
 }
@@ -121,6 +131,9 @@ input:focus{
     display: inline-block;
     color: black; 
 }
+
+/* Followers Page Style
+================================ */
 
 .followers-page {
     color: #564D80;
@@ -140,12 +153,8 @@ input:focus{
     .user-repos, .followers-usernames {
         margin-left: 0;
     }   
-
+    .search-page__input{
+        display: block;
+        margin: 10px auto;
+    }
 }
-
-
-
-
-
-
-
