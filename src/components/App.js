@@ -8,7 +8,7 @@ class App extends React.Component {
 
                 <header className="main-header">
                     <h1><Link to="/"> GitHub Search </Link></h1>
-                    <h4>Code Challenge by Colleen Purcell for Way2B1</h4> 
+                    <h4>by Colleen Purcell</h4> 
                 </header>
 
                 <main className="main-content">
